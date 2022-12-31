@@ -144,3 +144,113 @@ T = red ;
 
 ## Backtracking
 
+is a general algorithm for finding all (or some) solutions to some computational problems, notably constraint satisfaction problems, that incrementally builds candidates to the solutions, and abandons each partial candidate ("backtracks") as soon as it determines that the candidate cannot possibly be completed to a valid solution.
+
+### Example
+
+The following is a CSP that represents the map coloring problem. The variables are the states, the domains are the colors, and the constraints are the restrictions that no two adjacent states can have the same color.
+
+* variables: WA, NT, SA, Q, NSW, V, T
+* domains: red, green, blue
+* constraints: 
+    - WA != NT, 
+    - WA != SA, 
+    - NT != SA, 
+    - NT != Q, 
+    - SA != Q, 
+    - SA != NSW, 
+    - SA != V, 
+    - Q != NSW, 
+    - NSW != V
+
+```python
+# map coloring problem
+# variables: WA, NT, SA, Q, NSW, V, T
+# domains: red, green, blue
+# constraints:
+#     - WA != NT,
+#     - WA != SA,
+#     - NT != SA,
+#     - NT != Q,
+#     - SA != Q,
+#     - SA != NSW,
+#     - SA != V,
+#     - Q != NSW,
+#     - NSW != V
+
+# variables
+variables = ['WA', 'NT', 'SA', 'Q', 'NSW', 'V', 'T']
+
+# domains
+domains = ['red', 'green', 'blue']
+
+# constraints
+constraints = [
+    ('WA', 'NT'),
+    ('WA', 'SA'),
+    ('NT', 'SA'),
+    ('NT', 'Q'),
+    ('SA', 'Q'),
+    ('SA', 'NSW'),
+    ('SA', 'V'),
+    ('Q', 'NSW'),
+    ('NSW', 'V')
+]
+
+# backtracking
+def backtracking(assignment):
+    if len(assignment) == len(variables):
+        return assignment
+    var = variables[len(assignment)]
+    for value in domains:
+        if consistent(assignment, (var, value)):
+            assignment.append((var, value))
+            result = backtracking(assignment)
+            if result is not None:
+                return result
+            assignment.pop()
+
+def consistent(assignment, (var, value)):
+    for (v, val) in assignment:
+        if (var, v) in constraints or (v, var) in constraints:
+            if value == val:
+                return False
+    return True
+
+# query
+print backtracking([])
+```
+
+result:
+
+```python
+[('WA', 'red'), ('NT', 'green'), ('SA', 'blue'), ('Q', 'red'), ('NSW', 'green'), ('V', 'red'), ('T', 'blue')]
+```
+
+## k-consistency
+
+is a property of a constraint satisfaction problem that is satisfied by a solution if and only if the solution is consistent with at least k of the constraints.
+
+for specific number of K we define the following Algorithms:
+
+* k = 1 : node consistency
+* k = 2 : arc consistency
+* k = 3 : path consistency
+* k > 3 : k-consistency
+
+### node consistency
+
+is a property of a constraint satisfaction problem that is satisfied by a solution if and only if the solution is consistent with at least one of the constraints.
+
+### arc consistency
+
+is a property of a constraint satisfaction problem that is satisfied by a solution if and only if the solution is consistent with at least two of the constraints.
+
+### path consistency
+
+is a property of a constraint satisfaction problem that is satisfied by a solution if and only if the solution is consistent with at least three of the constraints.
+
+### k-consistency
+
+is a property of a constraint satisfaction problem that is satisfied by a solution if and only if the solution is consistent with at least k of the constraints.
+
