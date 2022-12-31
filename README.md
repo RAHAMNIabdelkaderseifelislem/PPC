@@ -16,5 +16,3 @@ This module provides a set of constraint programming tools for the [Prolog](http
     * Arc consistency
     * Path consistency
     * Bound consistency
-
-
