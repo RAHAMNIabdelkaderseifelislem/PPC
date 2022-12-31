@@ -36,3 +36,43 @@ Object-oriented programming is a programming paradigm based on the concept of "o
 ## which domain is constraint programming?
 
 Constraint programming is a declarative programming paradigm, which means that the programmer specifies the problem to be solved, but not the algorithm to solve it. The constraint programming paradigm is based on the idea that a problem can be solved by restricting the possible solutions to the problem. The programmer specifies the constraints that the solution must satisfy, and the constraint solver finds a solution that satisfies all the constraints. so it's based on logic programming.
+
+# RESEARCHs
+
+Other research were demanded to be done
+
+## CLP(X) family
+
+CLP(X) is a family of constraint logic programming languages. CLP(X) languages are based on the idea that a problem can be solved by restricting the possible solutions to the problem. The programmer specifies the constraints that the solution must satisfy, and the constraint solver finds a solution that satisfies all the constraints.
+we can summarize the CLP(X) family in the following table
+
+| CLP(X) family | CLP(FD) | CLP(R) | CLP(Q) | CLP(G) | CLP(B) |
+| --- | --- | --- | --- | --- | --- |
+| domain | finite domain | real domain | rational domain | general domain | boolean domain |
+| example | CLP(FD) languages are based on the idea that a problem can be solved by restricting the possible solutions to the problem. The programmer specifies the constraints that the solution must satisfy, and the constraint solver finds a solution that satisfies all the constraints. | CLP(R) languages are based on the idea that a problem can be solved by restricting the possible solutions to the problem. The programmer specifies the constraints that the solution must satisfy, and the constraint solver finds a solution that satisfies all the constraints. | CLP(Q) languages are based on the idea that a problem can be solved by restricting the possible solutions to the problem. The programmer specifies the constraints that the solution must satisfy, and the constraint solver finds a solution that satisfies all the constraints. | CLP(G) languages are based on the idea that a problem can be solved by restricting the possible solutions to the problem. The programmer specifies the constraints that the solution must satisfy, and the constraint solver finds a solution that satisfies all the constraints. | CLP(B) languages are based on the idea that a problem can be solved by restricting the possible solutions to the problem. The programmer specifies the constraints that the solution must satisfy, and the constraint solver finds a solution that satisfies all the constraints. |
+
+## how to know that a problem can be solved by CLP(X)?
+
+the problem can be solved by CLP(X) if it can be solved by restricting the possible solutions to the problem. The programmer specifies the constraints that the solution must satisfy, and the constraint solver finds a solution that satisfies all the constraints.
+
+## what is the diffrence between CLP(FD) and CLP(R) and CLP(Q) and CLP(G) and CLP(B)?
+
+### CLP(FD)
+
+CLP(FD) languages are based on the idea that a problem can be solved by restricting the possible solutions to the problem. The programmer specifies the constraints that the solution must satisfy, and the constraint solver finds a solution that satisfies all the constraints.
+
+### CLP(R)
+
+CLP(R) languages are based on the idea that a problem can be solved by restricting the possible solutions to the problem. The programmer specifies the constraints that the solution must satisfy, and the constraint solver finds a solution that satisfies all the constraints.
+
+### CLP(Q)
+
+CLP(Q) languages are based on the idea that a problem can be solved by restricting the possible solutions to the problem. The programmer specifies the constraints that the solution must satisfy, and the constraint solver finds a solution that satisfies all the constraints.
+
+### CLP(G)
+
+CLP(G) languages are based on the idea that a problem can be solved by restricting the possible solutions to the problem. The programmer specifies the constraints that the solution must satisfy, and the constraint solver finds a solution that satisfies all the constraints.
+
+### CLP(B)
+
+CLP(B) languages are based on the idea that a problem can be solved by restricting the possible solutions to the problem. The programmer specifies the constraints that the solution must satisfy, and the constraint solver finds a solution that satisfies all the constraints.
