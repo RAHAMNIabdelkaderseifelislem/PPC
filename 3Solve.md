@@ -224,7 +224,7 @@ print backtracking([])
 result:
 
 ```python
-[('WA', 'red'), ('NT', 'green'), ('SA', 'blue'), ('Q', 'red'), ('NSW', 'green'), ('V', 'red'), ('T', 'blue')]
+[('WA', 'red'), ('NT', 'green'), ('SA', 'blue'), ('Q', 'red'), ('NSW', 'green'), ('V', 'red'), ('T', 'red')]
 ```
 
 ## k-consistency
@@ -254,3 +254,145 @@ is a property of a constraint satisfaction problem that is satisfied by a soluti
 
 is a property of a constraint satisfaction problem that is satisfied by a solution if and only if the solution is consistent with at least k of the constraints.
 
+### Implementation
+
+```python
+# k-consistency
+# variables: WA, NT, SA, Q, NSW, V, T
+# domains: red, green, blue
+# constraints:
+#     - WA != NT,
+#     - WA != SA,
+#     - NT != SA,
+#     - NT != Q,
+#     - SA != Q,
+#     - SA != NSW,
+#     - SA != V,
+#     - Q != NSW,
+#     - NSW != V
+
+# variables
+variables = ['WA', 'NT', 'SA', 'Q', 'NSW', 'V', 'T']
+
+# domains
+domains = ['red', 'green', 'blue']
+
+# constraints
+constraints = [
+    ('WA', 'NT'),
+    ('WA', 'SA'),
+    ('NT', 'SA'),
+    ('NT', 'Q'),
+    ('SA', 'Q'),
+    ('SA', 'NSW'),
+    ('SA', 'V'),
+    ('Q', 'NSW'),
+    ('NSW', 'V')
+]
+
+# k-consistency
+def k_consistency(assignment, k):
+    if len(assignment) == len(variables):
+        return assignment
+    var = variables[len(assignment)]
+    for value in domains:
+        if consistent(assignment, (var, value), k):
+            assignment.append((var, value))
+            result = k_consistency(assignment, k)
+            if result is not None:
+                return result
+            assignment.pop()
+
+def consistent(assignment, (var, value), k):
+    c = 0
+    for (v, val) in assignment:
+        if (var, v) in constraints or (v, var) in constraints:
+            if value == val:
+                c += 1
+                if c >= k:
+                    return False
+    return True
+
+# query
+print k_consistency([], 1)
+print k_consistency([], 2)
+print k_consistency([], 3)
+```
+
+result:
+
+```python
+[('WA', 'red'), ('NT', 'green'), ('SA', 'blue'), ('Q', 'red'), ('NSW', 'green'), ('V', 'red'), ('T', 'red')]
+[('WA', 'red'), ('NT', 'red'), ('SA', 'green'), ('Q', 'red'), ('NSW', 'red'), ('V', 'red'), ('T', 'red')]
+[('WA', 'red'), ('NT', 'red'), ('SA', 'red'), ('Q', 'red'), ('NSW', 'red'), ('V', 'red'), ('T', 'red')]
+```
+
+## Bound Consistency
+
+is a property of a constraint satisfaction problem that is satisfied by a solution if and only if the solution is consistent with at least one of the constraints.
+
+### Implementation
+
+```python
+# bound consistency
+# variables: WA, NT, SA, Q, NSW, V, T
+# domains: red, green, blue
+# constraints:
+#     - WA != NT,
+#     - WA != SA,
+#     - NT != SA,
+#     - NT != Q,
+#     - SA != Q,
+#     - SA != NSW,
+#     - SA != V,
+#     - Q != NSW,
+#     - NSW != V
+
+# variables
+variables = ['WA', 'NT', 'SA', 'Q', 'NSW', 'V', 'T']
+
+# domains
+domains = ['red', 'green', 'blue']
+
+# constraints
+constraints = [
+    ('WA', 'NT'),
+    ('WA', 'SA'),
+    ('NT', 'SA'),
+    ('NT', 'Q'),
+    ('SA', 'Q'),
+    ('SA', 'NSW'),
+    ('SA', 'V'),
+    ('Q', 'NSW'),
+    ('NSW', 'V')
+]
+
+# bound consistency
+def bound_consistency(assignment):
+    if len(assignment) == len(variables):
+        return assignment
+    var = variables[len(assignment)]
+    for value in domains:
+        if consistent(assignment, (var, value)):
+            assignment.append((var, value))
+            result = bound_consistency(assignment)
+            if result is not None:
+                return result
+            assignment.pop()
+
+def consistent(assignment, (var, value)):
+    for (v, val) in assignment:
+        if (var, v) in constraints or (v, var) in constraints:
+            if value == val:
+                return False
+    return True
+
+# query
+print bound_consistency([])
+```
+
+result:
+
+```python
+[('WA', 'red'), ('NT', 'green'), ('SA', 'blue'), ('Q', 'red'), ('NSW', 'green'), ('V', 'red'), ('T', 'red')]
+```
